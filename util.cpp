@@ -11,7 +11,7 @@ void compute_primes()
 {
   int num = 1, primes = 0;
 
-  uint limit = 4294967295;
+  unsigned int limit = 4294967295;
   for (num = 1; num <= limit; num++) {
     int i = 2;
     while (i <= num) {
