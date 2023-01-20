@@ -1,4 +1,6 @@
 # Subprocess-Primes
-I don't know how to describe this program. Feel free to make changes!
+
+Does things with numbers. May or may not take up 100% of all your cpu cores. We take no responsibility to whatever happens to your computer if you run this. It shouldn't be that bad. I hope.
+
 ## Dependencies
-- ncurses (ncurses-devel)
+ - ncurses (ncurses-devel)
