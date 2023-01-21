@@ -1,6 +1,8 @@
 #include "util.cpp"
 #include <thread>
 #include <iostream>
+#include <cstdlib>
+#include <vector>
 
 #define win_title "Would you like to proceed?"
 
@@ -102,11 +104,16 @@ int main(int argc, char *argv[])
           "program, ^C will not work as the program handles SIGINT, SIGABRT and SIGTERM and "
           "prevents them from ending runtime.", nthreads);
       wrefresh(my_win_padded);
+      std::vector<std::thread> threads;
       for (int i = 0; i <= (nthreads * 100); i++)
       {
-        std::thread j(compute_primes);
-        j.detach();
+        threads.emplace_back(compute_primes);
       }
+      for (auto &thread : threads)
+      {
+        thread.detach();
+      }
+      while (1) {}
     }
   }
 
