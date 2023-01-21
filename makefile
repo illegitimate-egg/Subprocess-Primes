@@ -19,4 +19,4 @@ windows:
 	@echo "Done."
 
 clean:
-	rm main
+	rm -f linux-dynamic linux-static windows-x86_64
