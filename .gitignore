@@ -3,3 +3,6 @@
 main
 .replit
 replit.nix
+linux-static
+linux-dynamic
+windows-x86_64.exe
