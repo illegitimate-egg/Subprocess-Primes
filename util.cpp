@@ -7,6 +7,8 @@
 WINDOW *create_newwin(int height, int width, int starty, int startx);
 void destroy_win(WINDOW *local_win);
 
+WINDOW *my_win_padded;
+
 void compute_primes()
 {
   int num = 1, primes = 0;
@@ -50,16 +52,19 @@ void sigint_handler(int signum)
 {
   signal(SIGINT, sigint_handler);
   fflush(stdout);
+  wprintw(my_win_padded, "\nNice try!");
 }
 
 void sigterm_handler(int signum)
 {
   signal(SIGTERM, sigterm_handler);
   fflush(stdout);
+  wprintw(my_win_padded, "\nNice try!");
 }
 
 void sigabrt_handler(int signum)
 {
   signal(SIGABRT, sigabrt_handler);
   fflush(stdout);
+  wprintw(my_win_padded, "\nNice try!");
 }
