@@ -12,12 +12,7 @@ unsigned int nthreads = std::thread::hardware_concurrency();
 int main(int argc, char *argv[])
 {
   WINDOW *my_win;
-  WINDOW *my_win_padded;
   int ch;
-
-  signal(SIGINT, sigint_handler);
-  signal(SIGTERM, sigterm_handler);
-  signal(SIGABRT, sigabrt_handler);
 
   initscr();
   keypad(stdscr, TRUE);
@@ -91,20 +86,21 @@ int main(int argc, char *argv[])
     switch (ch) {
     case 10:
     case 32:
+      signal(SIGINT, sigint_handler);
+      signal(SIGTERM, sigterm_handler);
+      signal(SIGABRT, sigabrt_handler);
       wclear(my_win_padded);
       wmove(my_win_padded, 0, 0);
       wprintw(
           my_win_padded,
           "Congratulations! You're now computing prime numbers up to the "
-          "unsigned 32-bit integer limit (4,294,967,295)! What are we "
+          "unsigned 32-bit integer limit (4,294,967,295) on all %d cores! What are we "
           "doing with them? Absolutely nothing! This will likely use a lot "
           "of processing power and take a while to complete. You have a "
           "few options. 1. Wait for it to complete (this will take a long "
           "time). 2. Reboot your computer. 3. Find a way to exit the "
-          "program, ^C will not work as the program handles SIGINT and "
-          "prevents it from ending runtime. If you hadn't pressed ok you could "
-          "have pressed F1 to save yourself. Remember this for next "
-          "time.\nChange da world, my final message, goodbye.");
+          "program, ^C will not work as the program handles SIGINT, SIGABRT and SIGTERM and "
+          "prevents them from ending runtime.", nthreads);
       wrefresh(my_win_padded);
       for (int i = 0; i <= nthreads; i++)
       {
