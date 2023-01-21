@@ -16,6 +16,7 @@ static-compile:
 windows:
 	@echo "Compile for windows with static linking (forced for compaitibility). Note: It is likely that you will need to change your ncursesw directory for this to work with your install."
 	$(CC) main.cpp $(CFLAGS) -ID:/msys64/mingw64/include/ncursesw -DNCURSES_STATIC --static -o windows-x86_64
+	@echo "Done."
 
 clean:
 	rm main
